@@ -1,0 +1,36 @@
+<ng-container *transloco="let t">
+  <div>{{t('Greeting')}}
+    <div class="form-check form-switch">
+      <input
+        mdbCheckbox
+        class="form-check-input"
+        type="checkbox"
+        id="flexSwitchCheckDefault"
+        (change)="changeLanguage()"
+      />
+      <label class="form-check-label" for="flexSwitchCheckDefault">English</label
+      >
+    </div>
+  </div>
+  <button type="button" (click)="addOrEditItem()" class="btn btn-primary">Add new</button>
+  <app-table (action)="actionClick($event)" [columns]="columns" [dataTable]="dataTable"
+             [actionTemplate]="actionTemplate"
+             [rowTemplate]="rowTemplate">
+    <ng-template #actionTemplate let-row>
+      <button type="button" class="btn btn-info me-1" (click)="addOrEditItem(row)">Edit</button>
+      <button type="button" class="btn btn-danger" (click)="deleteItem(row)">Delete</button>
+    </ng-template>
+    <ng-template #rowTemplate let-row='row' let-column='column'>
+      <ng-container [ngSwitch]="column.field">
+        <ng-container *ngSwitchCase="'age'">
+          <div class="me-1">{{row[column.field]}}
+            <button type="button" (click)="showAge(row)" class="btn btn-primary">Age</button>
+          </div>
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+          <span appToolTip [ngbTooltip]="row[column.field]">{{row[column.field]}}</span>
+        </ng-container>
+      </ng-container>
+    </ng-template>
+  </app-table>
+</ng-container>

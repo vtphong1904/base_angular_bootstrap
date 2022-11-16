@@ -1,0 +1,40 @@
+<table class="table table-striped" style="table-layout: fixed">
+  <thead>
+  <tr>
+    <th *ngFor="let col of columns" scope="col" [style.width]="calcColumnWidth(col)">{{col.display}}</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of dataTable">
+
+<!--    <td style="width: 10%">{{item.stt}}</td>-->
+<!--    <td style="width: 20%">{{item.name}}</td>-->
+<!--    <td style="width: 10%">{{item.age}}</td>-->
+<!--    <td style="width: 30%">{{item.address}}</td>-->
+<!--    <td style="width: 20%">Đinh công mệnh nhà nó</td>-->
+
+    <td *ngFor="let col of columns">
+      <ng-container [ngSwitch]="col.field">
+        <ng-container *ngSwitchDefault>
+
+          <ng-container [ngTemplateOutlet]="rowTemplate ? rowTemplate : defaultRowTemplate"
+                        [ngTemplateOutletContext]="{row: item, column: col}">
+          </ng-container>
+          <ng-template #defaultRowTemplate>
+            <span>{{item[col?.field]}}</span>
+          </ng-template>
+
+<!--          <span>{{item[col?.field]}}</span>-->
+        </ng-container>
+        <ng-container *ngSwitchCase="'actions'">
+          <ng-container [ngTemplateOutlet]="actionTemplate ? actionTemplate : defaultActions"
+                        [ngTemplateOutletContext]="{$implicit: item}"></ng-container>
+          <ng-template #defaultActions>
+            <button *ngFor="let a of displayActions" (click)="emitAction(a.id, item)">{{a.id}}</button>
+          </ng-template>
+        </ng-container>
+      </ng-container>
+    </td>
+  </tr>
+  </tbody>
+</table>

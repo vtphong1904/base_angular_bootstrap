@@ -1,0 +1,41 @@
+<ng-container>
+  <div class="modal-header">
+    <h4 class="modal-title">{{data ? 'Sửa' :'Thêm mới'}}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('close')"></button>
+  </div>
+  <div class="modal-body" [formGroup]="formGroup">
+
+    <div class="mb-2 d-flex">
+      <label class="w-25">Stt: </label>
+      <div class="w-75">
+        <input type="text" formControlName="stt" class="w-100">
+        <app-error-message [controlName]="'stt'" name="STT"></app-error-message>
+      </div>
+    </div>
+    <div class="mb-2 d-flex">
+      <label class="w-25">Tên: </label>
+      <div class="w-75">
+        <input type="text" formControlName="name" class="w-100">
+        <app-error-message [controlName]="'name'" name="Tên"></app-error-message>
+      </div>
+    </div>
+    <div class="mb-2 d-flex">
+      <label class="w-25">Tuổi: </label>
+      <div class="w-75">
+        <input type="text" formControlName="age" class="w-100">
+        <app-error-message [controlName]="'age'" name="Tuổi"></app-error-message>
+      </div>
+    </div>
+    <div class="mb-2 d-flex">
+      <label class="w-25">Địa chỉ: </label>
+      <div class="w-75">
+        <input type="text" formControlName="address" class="w-100">
+        <app-error-message [controlName]="'address'" name="Địa chỉ"></app-error-message>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="activeModal.dismiss('close')">Close</button>
+    <button type="button" class="btn btn-light" (click)="save()">Save</button>
+  </div>
+</ng-container>

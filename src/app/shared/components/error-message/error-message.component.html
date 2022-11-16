@@ -1,0 +1,10 @@
+<ng-container *ngIf="control && control?.invalid && control?.touched">
+  <ul>
+    <ng-container *ngFor = "let error of getListError">
+      <li *ngIf="error">
+        <span>{{error}}</span>
+      </li>
+    </ng-container>
+  </ul>
+</ng-container>
+
