@@ -13,7 +13,7 @@
     </div>
   </div>
   <button type="button" (click)="addOrEditItem()" class="btn btn-primary">Add new</button>
-  <app-table (action)="actionClick($event)" [columns]="columns" [dataTable]="listItem"
+  <app-table (action)="actionClick($event)" [columns]="columns" [dataTable]="listItem" [pagination]="pagination"
              [actionTemplate]="actionTemplate"
              [rowTemplate]="rowTemplate">
     <ng-template #actionTemplate let-row>

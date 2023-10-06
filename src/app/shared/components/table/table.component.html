@@ -31,3 +31,11 @@
   </tr>
   </tbody>
 </table>
+<ngb-pagination
+  [collectionSize]="pagination.total"
+  [(page)]="pagination.page"
+  [maxSize]="pagination.size"
+  [rotate]="true"
+  [ellipses]="false"
+  [boundaryLinks]="true"
+></ngb-pagination>

@@ -43,6 +43,11 @@ export class TestComponent extends BaseComponent implements OnInit {
     }
   ];
   dataTable: any;
+  pagination = {
+    total: 20,
+    size: 5,
+    page: 1
+  };
 
   constructor(injector: Injector, private testService: TestService, private translocoService: TranslocoService) {
     super(injector, testService);

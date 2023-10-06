@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ToastComponent} from './components/toast/toast.component';
-import {NgbToastModule, NgbTypeaheadModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgbPaginationModule, NgbToastModule, NgbTypeaheadModule} from "@ng-bootstrap/ng-bootstrap";
 import {TableComponent} from './components/table/table.component';
 import {ErrorMessageComponent} from './components/error-message/error-message.component';
 import {ErrorMessageInputComponent} from './components/error-message-input/error-message-input.component';
@@ -9,7 +9,13 @@ import {ToolTipDirective} from './directives/tool-tip.directive';
 import {ConfirmComponent} from './components/confirm/confirm.component';
 
 const bootstrapModule = [
-  NgbToastModule
+  NgbToastModule,
+  NgbTypeaheadModule,
+  NgbPaginationModule
+]
+
+export const directives = [
+  ToolTipDirective
 ]
 
 
@@ -19,8 +25,8 @@ const bootstrapModule = [
     TableComponent,
     ErrorMessageComponent,
     ErrorMessageInputComponent,
-    ToolTipDirective,
-    ConfirmComponent
+    ConfirmComponent,
+    ...directives,
   ],
   exports: [
     ToastComponent,
@@ -28,12 +34,12 @@ const bootstrapModule = [
     ErrorMessageComponent,
     ErrorMessageInputComponent,
     ConfirmComponent,
-    ToolTipDirective
+    ...directives,
+    ...bootstrapModule,
   ],
   imports: [
     CommonModule,
     ...bootstrapModule,
-    NgbTypeaheadModule
   ]
 })
 export class SharedModule {

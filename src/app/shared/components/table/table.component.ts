@@ -8,6 +8,7 @@ import {Component, EventEmitter, Input, OnInit, Output, TemplateRef} from '@angu
 export class TableComponent implements OnInit {
   @Input() dataTable: any;
   @Input() columns: any;
+  @Input() pagination: any;
   @Output() action =  new EventEmitter<any>();
   @Input() actionTemplate: TemplateRef<any>;
   @Input() rowTemplate: TemplateRef<any>;
@@ -22,6 +23,7 @@ export class TableComponent implements OnInit {
     }
   ];
   displayActions: any;
+  page = 1;
   constructor() {
   }
 
