@@ -28,7 +28,7 @@ export class AddOrEditComponent extends BaseComponent implements OnInit {
   }
   save(){
     this.eventClickModal.emit(CONFIRM_SAVE_MODAL);
-    this.activeModal.close(CONFIRM_SAVE_MODAL);
+    // this.activeModal.close(CONFIRM_SAVE_MODAL);
   }
 
 }
