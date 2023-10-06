@@ -1,15 +1,15 @@
 <ng-container>
   <div class="modal-header">
-    <h4 class="modal-title">{{data ? 'Sửa' :'Thêm mới'}}</h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('close')"></button>
+    <h4 class="modal-title">{{dataModal ? 'Sửa' :'Thêm mới'}}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
   </div>
-  <div class="modal-body" [formGroup]="formGroup">
+  <div class="modal-body" [formGroup]="formModel">
 
     <div class="mb-2 d-flex">
       <label class="w-25">Stt: </label>
       <div class="w-75">
-        <input type="text" formControlName="stt" class="w-100">
-        <app-error-message [controlName]="'stt'" name="STT"></app-error-message>
+        <input type="text" formControlName="id" class="w-100">
+        <app-error-message [controlName]="'id'" name="STT"></app-error-message>
       </div>
     </div>
     <div class="mb-2 d-flex">
@@ -22,20 +22,22 @@
     <div class="mb-2 d-flex">
       <label class="w-25">Tuổi: </label>
       <div class="w-75">
-        <input type="text" formControlName="age" class="w-100">
-        <app-error-message [controlName]="'age'" name="Tuổi"></app-error-message>
+        <input type="text" formControlName="code" class="w-100">
+        <app-error-message [controlName]="'code'" name="Code"></app-error-message>
       </div>
     </div>
-    <div class="mb-2 d-flex">
+    <!--<div class="mb-2 d-flex">
       <label class="w-25">Địa chỉ: </label>
       <div class="w-75">
         <input type="text" formControlName="address" class="w-100">
         <app-error-message [controlName]="'address'" name="Địa chỉ"></app-error-message>
       </div>
-    </div>
+    </div>-->
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-light" (click)="activeModal.dismiss('close')">Close</button>
-    <button type="button" class="btn btn-light" (click)="save()">Save</button>
+    <button type="button" class="btn btn-light" (click)="activeModal.dismiss()">Close</button>
+<!--    <button type="button" class="btn btn-light" (click)="addNewItem(formGroup?.getRawValue())">Save</button>-->
+<!--    <button type="button" class="btn btn-light" (click)="addNewItem()">Save</button>-->
+    <button type="button" class="btn btn-light" (click)="save$.next(formModel?.getRawValue())">Save</button>
   </div>
 </ng-container>

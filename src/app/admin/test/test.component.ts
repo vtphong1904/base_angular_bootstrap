@@ -14,15 +14,9 @@ import {TranslocoService} from "@ngneat/transloco";
 })
 export class TestComponent extends BaseComponent implements OnInit {
 
-  formTest = this.fb.group({
-    name: [null, Validators.required],
-    address: [null, [Validators.required, Validators.maxLength(5)]],
-    email: [null, [Validators.required, Validators.pattern(/[0-9]/)]]
-  })
-
   columns = [
     {
-      field: 'stt',
+      field: 'id',
       display: 'STT',
       flex: 0.5
     },
@@ -32,20 +26,20 @@ export class TestComponent extends BaseComponent implements OnInit {
       flex: 1
     },
     {
-      field: 'age',
-      display: 'Tuổi',
+      field: 'code',
+      display: 'Code',
       flex: 0.6
     },
     {
-      field: 'address',
-      display: 'Địa chỉ',
-      flex: 1.5
+      field: 'age',
+      display: 'Age',
+      flex: 0.8
     },
     {
       field: 'actions',
       display: 'Hành động',
       actions: ['edit', 'delete'],
-      flex: 1.5
+      flex: 0.5
     }
   ];
   dataTable: any;
@@ -56,7 +50,6 @@ export class TestComponent extends BaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAll();
-    this.dataTable = this.listData;
   }
 
   actionClick(e: any) {
@@ -66,17 +59,13 @@ export class TestComponent extends BaseComponent implements OnInit {
 
   addOrEditItem(row?: any) {
     this.openModal(AddOrEditComponent, row, (value: any) => {
-      if(value === CONFIRM_SAVE_MODAL){
-       this.showToast(row ? 'Cập nhật thành công' : 'Thêm mới thành công', 'success');
-        this.getAll();
-      }
+      console.log('Close dialog modal', value)
     })
   }
-  deleteItem(row: any){
+  openConfirmDelete(row: any){
     this.openModal(ConfirmComponent, row, (value: any) => {
       if(value === CONFIRM_DELETE_MODAL){
-        this.showToast('Xoá thành công', 'success');
-        this.getAll();
+        this.deleteItem(row?.id)
       }
     })
   }

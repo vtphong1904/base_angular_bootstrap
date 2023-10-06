@@ -1,7 +1,7 @@
 import {Component, Injector, OnInit} from '@angular/core';
-import {BaseComponent} from "../../../core/base/base.component";
-import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
-import {CONFIRM_DELETE_MODAL} from "../../../app.constants";
+import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {CONFIRM_DELETE_MODAL} from '@app/app.constants';
+import {BaseComponent} from '@app/core/base/base.component';
 
 @Component({
   selector: 'app-confirm',
@@ -17,8 +17,7 @@ export class ConfirmComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  delete() {
-    this.eventClickModal.emit('delete');
+  confirmDelete() {
     this.activeModal.close(CONFIRM_DELETE_MODAL);
   }
 }

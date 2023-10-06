@@ -1,9 +1,9 @@
-import {Component, Injector, OnInit} from '@angular/core';
+import {Component, Inject, Injector, OnInit} from '@angular/core';
 import {BaseComponent} from "../../../core/base/base.component";
-import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {NgbActiveModal, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {TestService} from "../test.service";
-import {CLOSE_MODAL, CONFIRM_SAVE_MODAL} from "../../../app.constants";
 import {Validators} from "@angular/forms";
+import {CONFIRM_SAVE_MODAL} from '../../../app.constants';
 
 @Component({
   selector: 'app-add-or-edit',
@@ -12,23 +12,26 @@ import {Validators} from "@angular/forms";
 })
 export class AddOrEditComponent extends BaseComponent implements OnInit {
 
-  formGroup = this.fb.group({
-    stt: [null, Validators.required],
-    name: [null, Validators.required],
-    age: [null],
-    address: [null]
-  })
-
   constructor(injector: Injector, private testService: TestService , public activeModal: NgbActiveModal) {
-    super(injector, testService);
+    super(injector, testService, activeModal);
   }
 
   ngOnInit(): void {
-    this.formGroup.patchValue(this.data);
+    this.initForm();
+    this.getDetailById(1);
+    this.asyncAddOrEditItem();
+  }
+
+  initForm(){
+    this.formModel = this.fb.group({
+      id: [null, Validators.required],
+      name: [null, Validators.required],
+      code: [null],
+    })
   }
   save(){
-    this.eventClickModal.emit(CONFIRM_SAVE_MODAL);
-    // this.activeModal.close(CONFIRM_SAVE_MODAL);
+    console.log('save')
+    this.activeModal.close(CONFIRM_SAVE_MODAL);
   }
 
 }
